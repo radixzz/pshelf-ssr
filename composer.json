@@ -18,7 +18,8 @@
         "symfony/process": "^4.2",
         "react/socket": "^1.2",
         "symfony/console": "^4.2",
-        "symfony/filesystem": "^4.2"
+        "symfony/filesystem": "^4.2",
+        "symfony/var-dumper": "^4.2"
     },
     "license": "MIT",
     "authors": [
@@ -32,8 +33,5 @@
         "psr-4": {
             "PShelf\\Ssr\\": "src"
         }
-    },
-    "require-dev": {
-        "symfony/var-dumper": "^4.2"
     }
 }
