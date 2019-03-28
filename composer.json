@@ -1,7 +1,13 @@
 {
     "name": "pshelf/ssr",
     "description": "Lightweight server side rendering for modern SPA's",
-    "type": "project",
+    "keywords": [
+        "ssr",
+        "puppeteer",
+        "spa",
+        "seo"
+    ],
+    "type": "library",
     "require": {
         "php": "~7.2",
         "monolog/monolog": "^1.24",
