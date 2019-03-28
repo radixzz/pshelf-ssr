@@ -1,0 +1,31 @@
+{
+    "name": "pshelf/ssr",
+    "description": "Lightweight server side rendering for modern SPA's",
+    "type": "project",
+    "require": {
+        "php": "~7.2",
+        "monolog/monolog": "^1.24",
+        "nesk/puphpeteer": "^1.4",
+        "league/uri-components": "^1.8",
+        "symfony/http-foundation": "^4.2",
+        "symfony/process": "^4.2",
+        "react/socket": "^1.2",
+        "symfony/console": "^4.2",
+        "symfony/filesystem": "^4.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Juarez",
+            "email": "ivan@blindgazer.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PShelf\\Ssr\\": "src"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.2"
+    }
+}

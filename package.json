@@ -1,0 +1,13 @@
+{
+  "name": "ssr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@nesk/puphpeteer": "^1.4.1",
+    "puppeteer": "^1.12.2"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}
