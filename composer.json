@@ -28,8 +28,8 @@
         }
     ],
     "autoload": {
+        "files": [ "config/config.php" ],
         "psr-4": {
-            "files": [ "config/config.php" ],
             "PShelf\\Ssr\\": "src"
         }
     },
