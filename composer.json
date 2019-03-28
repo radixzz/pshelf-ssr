@@ -7,6 +7,7 @@
         "spa",
         "seo"
     ],
+    "minimum-stability": "stable",
     "type": "library",
     "require": {
         "php": "~7.2",
@@ -28,6 +29,7 @@
     ],
     "autoload": {
         "psr-4": {
+            "files": [ "config/config.php" ],
             "PShelf\\Ssr\\": "src"
         }
     },
