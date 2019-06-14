@@ -52,6 +52,10 @@ class Logger {
     }
   }
 
+  public function getInstance() {
+    return $this->instance;
+  }
+
   public function error() {
     if ($this->instance) {
       list($first, $all) = $this->handle(func_get_args());

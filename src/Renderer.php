@@ -13,6 +13,7 @@ class Renderer {
 
   public function __construct($args) {
     $this->defaultContent = $args['defaultContentsFile'];
+    $this->passthrough = $args['passthrough'];
     $this->targetHost = $args['targetHost'];
     $this->logger = new Logger('Renderer');
     $this->request = new Request();
@@ -24,7 +25,7 @@ class Renderer {
     $req = $this->request;
     if ($req->isForbidden()) {
       $this->sendNotFoundResponse();
-    } else if ($req->isSsrRequest()) {
+    } else if ($req->isSsrRequest() || $this->passthrough) {
       $this->sendDefaultResponse();
     } else {
       $this->sendCachedResponse();
@@ -36,10 +37,13 @@ class Renderer {
     $view = new CachedView($url);
     if (!$view->loaded) {
       $this->queueView($view);
-      $this->sendDefaultResponse();
-    } else {
-      $this->renderResponse($view->content, Response::HTTP_OK);
+      $view->waitForFile();
+      if (!$view->loaded) {
+        $this->sendDefaultResponse();
+        return;
+      }
     }
+    $this->renderResponse($view->content, Response::HTTP_OK);
   }
 
   function queueView($view) {

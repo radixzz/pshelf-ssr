@@ -15,7 +15,7 @@ class Process {
     return $phpBinaryFinder->find();
   }
 
-  private function processCommand($cmd, $background = false) {
+  public function processCommand($cmd, $background = false) {
     $proc = new SymfonyProcess($cmd);
     try {
       $proc->start();
@@ -34,7 +34,8 @@ class Process {
     $script = SSR_CLI_SCRIPT;
     $phpPath = $this->getPhpPath();
     $cmd = "{$phpPath} {$script} ssr:start > /dev/null &";
-    $this->processCommand($cmd, true);
+    $proc = $this->processCommand($cmd, true);
+    sleep(5);
     $this->logger->info('Process spawned');
   }
 
@@ -55,6 +56,11 @@ class Process {
     return array_filter($arr, function($v) {
       return !empty($v);
     });
+  }
+
+  public function killChrome() {
+    $this->processCommand('killall chrome -qw', true);
+    sleep(3);
   }
 
   public function killAll() {

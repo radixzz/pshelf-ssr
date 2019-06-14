@@ -7,26 +7,27 @@ use React\EventLoop\Factory;
 use React\Socket\Server as ReactServer;
 use React\Socket\ConnectionInterface;
 
+
 class Server {
   protected $logger;
   protected $server;
   protected $prerenderer;
-  protected $fetched = [];
 
   public function __construct() {
     $this->logger = new Logger('WorkerServer');
     $this->prerenderer = new Prerenderer();
+    $this->process = new Process();
+    $this->cleanup();
     $this->initServer();
+  }
+
+  private function cleanup() {
+    $this->process->killChrome();
   }
 
   public function onData($data) {
     $payload = unserialize($data);
-    if (!isset($this->fetched[$payload->id])) {
-      $this->prerenderer->fetch($payload->id, $payload->url);
-      $this->fetched[$payload->id] = true;
-    } else {
-      $this->logger->info('URL already fetched:', $payload->url);
-    }
+    $this->prerenderer->fetch($payload->id, $payload->url);
   }
 
   public function onClose() {
